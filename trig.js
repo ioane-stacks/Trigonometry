@@ -26,7 +26,7 @@ jQuery(function () {
     $('#tWidth').on('input', function () { Width = $('#tWidth').val(); DrawTriangle(); });
     $('#tHeight').on('input', function () { Height = $('#tHeight').val(); DrawTriangle(); });
     
-    if( $('mouseMove').val() == 'yes') {
+    if( $('#mouseMove').val() == 'yes') {
         $('body').on('mousemove', function(e) {
         Width = e.pageX - 300;
         Height = e.pageY - 60;
