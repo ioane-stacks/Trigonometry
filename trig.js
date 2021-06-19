@@ -26,13 +26,15 @@ jQuery(function () {
     $('#tWidth').on('input', function () { Width = $('#tWidth').val(); DrawTriangle(); });
     $('#tHeight').on('input', function () { Height = $('#tHeight').val(); DrawTriangle(); });
     
-    if( $('#mouseMove').val() == 'yes') {
+    $('#mouseMove').on('input', () => {
+        if( $(this).val() == 'yes') {
         $('body').on('mousemove', function(e) {
         Width = e.pageX - 300;
         Height = e.pageY - 60;
         DrawTriangle();
         });
     }
+    });
    
     function DrawTriangle() {
         ClearTriangle();
