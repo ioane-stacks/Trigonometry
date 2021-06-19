@@ -11,6 +11,8 @@ jQuery(function () {
     var Width = 0; var Height = 0;
     var radian = 180 / Math.PI;
 
+    var drawWithMouse
+
     function ClearTriangle() {
         $('.desk').remove();
         x = 0; h = 0; H = 0; y = 0; i = 0; a = 0; hor = 0; ver = 0; SinA = 0; CosA = 0;
@@ -25,17 +27,19 @@ jQuery(function () {
 
     $('#tWidth').on('input', function () { Width = $('#tWidth').val(); DrawTriangle(); });
     $('#tHeight').on('input', function () { Height = $('#tHeight').val(); DrawTriangle(); });
-    
-    $('#mouseMove').on('input', () => {
-        if( $(this).val() == 'yes') {
-        $('body').on('mousemove', function(e) {
+
+    function drawHand(e = MouseEvent) {
         Width = e.pageX - 300;
         Height = e.pageY - 60;
         DrawTriangle();
-        });
     }
+
+    $('#mouseMove').on('input', () => {
+        if ($('#mouseMove').val() == 'yes') {
+            $('body').on('mousemove', drawHand);
+        }
     });
-   
+
     function DrawTriangle() {
         ClearTriangle();
         $('body').append('<div class="desk"></div>');
@@ -58,7 +62,7 @@ jQuery(function () {
         H = Math.sqrt(Math.pow(Height, 2) + Math.pow(Width, 2));
         a = (Math.atan(Width / Height) * radian);
         b = (Math.atan(Height / Width) * radian);
-        console.log(a);
+        //console.log(a);
 
         hor = (Width / H);
         ver = (Height / H);
